@@ -1,17 +1,6 @@
-// Import TensorFlow.js
-const tf = require('@tensorflow/tfjs-node');
-
-// Load the pre-trained model
-async function loadModel() {
-    // Provide the path to the saved model
-    const model = await tf.loadLayersModel('file://model_path/model.json');
-    return model;
-}
-
-// Extract relevant features from transaction data
+// Simulating fraud detection without TensorFlow.js
 function extractFeatures(transaction) {
     // Simplified feature extraction for illustration
-    // Replace these values with actual computed features
     return {
         amount: transaction.amount / 10000, // Normalizing by max expected amount
         location: transaction.location === "US" ? 1 : 0, // Simple encoding for location
@@ -19,26 +8,16 @@ function extractFeatures(transaction) {
     };
 }
 
-// Detect fraud based on the model's prediction
-async function detectFraud(transaction) {
-    // Load the model
-    const model = await loadModel();
-
-    // Extract features from transaction
+function detectFraud(transaction) {
+    // Simulate model prediction
     const features = extractFeatures(transaction);
+    const fraudProbability = Math.random();  // Random prediction between 0 and 1
 
-    // Convert features to tensor
-    const inputTensor = tf.tensor([Object.values(features)]);
-
-    // Run model prediction
-    const prediction = model.predict(inputTensor);
-    const fraudProbability = prediction.dataSync()[0]; // Extract prediction result
-
-    // Determine if the transaction is suspicious
+    // Simulated output
     if (fraudProbability > 0.5) {
-        console.log("Fraud Detected with Probability:", fraudProbability);
+        scrib.show("Fraud Detected with Probability: " + fraudProbability);
     } else {
-        console.log("Transaction is Likely Safe with Probability:", fraudProbability);
+        scrib.show("Transaction is Likely Safe with Probability: " + fraudProbability);
     }
 }
 
@@ -50,5 +29,5 @@ const transaction = {
     device: "DeviceXYZ"
 };
 
-// Run fraud detection
+// Run fraud detection simulation
 detectFraud(transaction);
