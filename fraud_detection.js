@@ -21,12 +21,17 @@ function detectFraud(transaction) {
     }
 }
 
-// Sample transaction data for testing
+// Get user input for the transaction
+const amount = parseInt(prompt("Enter the transaction amount (e.g., 10500):"));
+const location = prompt("Enter the location (e.g., 'US' or 'Non-US'):");
+const device = prompt("Enter the device used (e.g., 'DeviceXYZ' or other):");
+
+// Construct the transaction object
 const transaction = {
-    amount: 10500,
+    amount: amount,
     timestamp: Date.now(),
-    location: "US",
-    device: "DeviceXYZ"
+    location: location,
+    device: device
 };
 
 // Run fraud detection simulation
